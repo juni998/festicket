@@ -1,4 +1,4 @@
-package festicket.demo.domain;
+package festicket.demo.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDTO {
+
+    private Long id;
 
     private String account;
 
