@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+
     Member findByAccount(@Param("account") String account);
+
+    List<Member> findListByAccount(@Param("account") String account);
 
 }
