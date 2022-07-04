@@ -1,6 +1,5 @@
-package festicket.demo.member;
+package festicket.demo.domain.member;
 
-import festicket.demo.time.TimeEntity;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -27,6 +26,7 @@ public class Member {
     private String email;
 
     private String phoneNumber;
+
 
     public Member(String account, String password, String name, String email, String phoneNumber) {
         this.account = account;

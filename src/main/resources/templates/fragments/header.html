@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="header">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,7 +17,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Bootstrap</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -32,11 +33,14 @@
                     </ul>
                 </li>
             </ul>
-                <button class="btn btn-outline-dark" type="button" onclick="location.href='/members/login'">
-                    <!--<i class="bi-cart-fill me-1"></i>-->
+                <button class="btn btn-outline-dark" sec:authorize="isAnonymous()" type="button" onclick="location.href='/login'">
                     로그인
-                    <!--<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
                 </button>
+            <button class="btn btn-outline-dark" sec:authorize="isAuthenticated()" type="button" onclick="/logout">
+                <i class="bi-cart-fill me-1"></i>
+                로그아웃
+                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </button>
         </div>
     </div>
 </nav></header>

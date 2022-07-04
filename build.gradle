@@ -41,7 +41,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0' //개발에만 사용
-
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
 }

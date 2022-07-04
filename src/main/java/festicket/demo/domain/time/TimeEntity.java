@@ -1,4 +1,4 @@
-package festicket.demo.time;
+package festicket.demo.domain.time;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,9 +1,8 @@
-package festicket.demo.member;
+package festicket.demo.repository;
 
-import festicket.demo.member.Member;
+import festicket.demo.domain.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

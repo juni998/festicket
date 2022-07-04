@@ -1,15 +1,14 @@
 package festicket.demo.member;
 
-import org.aspectj.lang.annotation.Before;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import festicket.demo.domain.member.Member;
+import festicket.demo.domain.member.MemberDto;
+import festicket.demo.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -20,16 +19,16 @@ class MemberServiceTest {
 
     @Test
     void save() {
-        MemberForm memberForm = new MemberForm("test", "1234", "이름", "wo@naver.com", "0101234567");
+        MemberDto memberDto = new MemberDto("test", "1234", "이름", "wo@naver.com", "0101234567");
 
-        memberService.save(memberForm);
+        memberService.save(memberDto);
 
-        Member findMember = memberService.findMember(memberForm.getAccount());
+        Member findMember = memberService.findMember(memberDto.getAccount());
 
-        assertThat(findMember.getAccount()).isEqualTo(memberForm.getAccount());
-        assertThat(findMember.getPassword()).isEqualTo(memberForm.getPassword());
-        assertThat(findMember.getName()).isEqualTo(memberForm.getName());
-        assertThat(findMember.getEmail()).isEqualTo(memberForm.getEmail());
+        assertThat(findMember.getAccount()).isEqualTo(memberDto.getAccount());
+        assertThat(findMember.getPassword()).isEqualTo(memberDto.getPassword());
+        assertThat(findMember.getName()).isEqualTo(memberDto.getName());
+        assertThat(findMember.getEmail()).isEqualTo(memberDto.getEmail());
     }
 
 

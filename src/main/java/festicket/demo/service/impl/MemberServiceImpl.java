@@ -1,12 +1,14 @@
-package festicket.demo.member;
+package festicket.demo.service.impl;
 
+import festicket.demo.domain.member.Member;
+import festicket.demo.domain.member.MemberDto;
+import festicket.demo.repository.MemberRepository;
+import festicket.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
 
 
 @Service
@@ -17,14 +19,10 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void save(MemberForm memberForm) {
-        Member member = new Member();
+    public void save(MemberDto memberDto) {
 
-        member.setAccount(memberForm.getAccount());
-        member.setPassword(memberForm.getPassword());
-        member.setName(memberForm.getName());
-        member.setEmail(memberForm.getEmail());
-        member.setPhoneNumber(memberForm.getPhoneNumber());
+        ModelMapper modelMapper = new ModelMapper();
+        Member member = modelMapper.map(memberDto, Member.class);
 
         memberRepository.save(member);
 
