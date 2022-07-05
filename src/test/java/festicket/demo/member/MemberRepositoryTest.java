@@ -28,7 +28,7 @@ class MemberRepositoryTest {
 
     @Test
     public void testMember() {
-        Member member = new Member("test", "1234", "테스트", "test@test.com", "1234");
+        Member member = new Member("test", "1234", "테스트", "test@test.com", "1234", "USER");
         Member savedMember = memberRepository.save(member);
 
         Optional<Member> findMember = memberRepository.findById(savedMember.getId());
@@ -40,10 +40,10 @@ class MemberRepositoryTest {
 
     @Test
     public void basicCRUD() {
-        Member member1 = new Member("test", "1234", "테스트", "test@test.com", "1234");
-        Member member2 = new Member("test2", "1234", "테스트2", "test2@test.com", "1234");
-        Member member3 = new Member("test3", "1234", "테스트3", "test3@test.com", "1234");
-        Member member4 = new Member("test4", "1234", "테스트4", "test4@test.com", "1234");
+        Member member1 = new Member("test", "1234", "테스트", "test@test.com", "1234", "USER");
+        Member member2 = new Member("test2", "1234", "테스트2", "test2@test.com", "1234", "USER");
+        Member member3 = new Member("test3", "1234", "테스트3", "test3@test.com", "1234", "USER");
+        Member member4 = new Member("test4", "1234", "테스트4", "test4@test.com", "1234", "USER");
 
         memberRepository.save(member1);
         memberRepository.save(member2);

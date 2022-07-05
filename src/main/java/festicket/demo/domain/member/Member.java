@@ -2,15 +2,12 @@ package festicket.demo.domain.member;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Member {
 
     @Id @GeneratedValue
@@ -27,13 +24,17 @@ public class Member {
 
     private String phoneNumber;
 
+    private String role;
 
-    public Member(String account, String password, String name, String email, String phoneNumber) {
+
+    public Member(String account, String password, String name, String email, String phoneNumber, String role) {
         this.account = account;
         this.password = password;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.role = role;
+
     }
 
 }

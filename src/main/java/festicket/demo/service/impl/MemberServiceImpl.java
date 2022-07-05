@@ -7,6 +7,7 @@ import festicket.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     public void save(MemberDto memberDto) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        Member member = new Member();
 
-        ModelMapper modelMapper = new ModelMapper();
-        Member member = modelMapper.map(memberDto, Member.class);
+        member.setAccount(memberDto.getAccount());
+        member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
+        member.setName(memberDto.getName());
+        member.setEmail(memberDto.getEmail());
+        member.setPhoneNumber(memberDto.getPhoneNumber());
+        member.setRole(memberDto.getRole());
 
         memberRepository.save(member);
 
