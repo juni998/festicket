@@ -25,20 +25,21 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     public void save(MemberDto memberDto) {
-        Member member = new Member();
-
-        member.setAccount(memberDto.getAccount());
-        member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
-        member.setName(memberDto.getName());
-        member.setEmail(memberDto.getEmail());
-        member.setPhoneNumber(memberDto.getPhoneNumber());
-        member.setRole(memberDto.getRole());
+        Member member = Member.builder()
+                .account(memberDto.getAccount())
+                .password(passwordEncoder.encode(memberDto.getPassword()))
+                .name(memberDto.getName())
+                .email(memberDto.getEmail())
+                .phoneNumber(memberDto.getPhoneNumber())
+                .role(memberDto.getRole())
+                .build();
 
         memberRepository.save(member);
 
     }
 
     public Member findMember(String account) {
+
         return memberRepository.findByAccount(account);
     }
 

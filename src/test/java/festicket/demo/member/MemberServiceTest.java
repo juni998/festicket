@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -21,6 +22,9 @@ class MemberServiceTest {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Test
     void save() {
         MemberDto memberDto = new MemberDto("test", "1234", "이름", "wo@naver.com", "0101234567", "USER");
@@ -28,7 +32,6 @@ class MemberServiceTest {
         memberService.save(memberDto);
 
         Member findMember = memberService.findMember(memberDto.getAccount());
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         assertThat(findMember.getAccount()).isEqualTo(memberDto.getAccount());
         assertTrue(passwordEncoder.matches(memberDto.getPassword(), findMember.getPassword()));
