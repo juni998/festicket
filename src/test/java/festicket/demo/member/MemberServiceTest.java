@@ -39,5 +39,17 @@ class MemberServiceTest {
         assertThat(findMember.getEmail()).isEqualTo(memberDto.getEmail());
     }
 
+    @Test
+    void changePassword() {
+        MemberDto memberDto = new MemberDto("test", "1234", "이름", "wo@naver.com", "0101234567", "USER");
+        memberService.save(memberDto);
+
+        memberService.changePasswordByAccount(memberDto.getAccount(), "2549");
+        Member findMember = memberService.findMember(memberDto.getAccount());
+
+        assertTrue(passwordEncoder.matches("2549", findMember.getPassword()));
+    }
+
+
 
 }

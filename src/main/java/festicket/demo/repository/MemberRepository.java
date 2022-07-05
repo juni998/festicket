@@ -13,6 +13,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     List<Member> findListByAccount(@Param("account") String account);
 
+    boolean existsByEmail(String email);
 
+    boolean existsByAccount(String account);
 
 }

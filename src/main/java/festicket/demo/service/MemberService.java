@@ -9,6 +9,8 @@ public interface MemberService {
 
     Member findMember(String account);
 
+    void changePasswordByAccount(String account, String newPassword);
+
 
 
 }

@@ -2,6 +2,7 @@ package festicket.demo.member;
 
 import festicket.demo.domain.member.Member;
 import festicket.demo.repository.MemberRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -65,5 +67,16 @@ class MemberRepositoryTest {
         memberRepository.delete(member3);
         long deleteCount = memberRepository.count();
         assertThat(deleteCount).isEqualTo(3);
+    }
+
+    @Test
+    public void existByAccount() {
+        Member member1 = new Member("test", "1234", "테스트", "test@test.com", "1234", "USER");
+
+        boolean findMember = memberRepository.existsByAccount(member1.getAccount());
+
+        assertTrue(!findMember);
+
+
     }
 }

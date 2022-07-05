@@ -43,6 +43,11 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findByAccount(account);
     }
 
+    @Transactional
+    public void changePasswordByAccount(String account, String newPassword) {
+        Member member = memberRepository.findByAccount(account);
+        member.changePassword(passwordEncoder.encode(newPassword));
 
+    }
 }
 
