@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +20,11 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private final MemberRepository memberRepository;
 
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
+
     @Transactional
     public void save(MemberDto memberDto) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Member member = new Member();
 
         member.setAccount(memberDto.getAccount());

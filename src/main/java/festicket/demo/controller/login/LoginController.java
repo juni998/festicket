@@ -40,8 +40,10 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginForm() {
+
         return "login/login";
     }
+
 
     //GET방식 로그아웃
     @GetMapping("/logout")
