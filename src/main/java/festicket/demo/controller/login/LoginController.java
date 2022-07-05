@@ -34,7 +34,7 @@ public class LoginController {
     public String register(@Valid MemberDto memberDto) {
 
         memberService.save(memberDto);
-        log.info("memberForm : " + memberDto);
+        log.info("memberDto : " + memberDto);
         return "redirect:/";
     }
 

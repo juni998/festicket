@@ -13,4 +13,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     List<Member> findListByAccount(@Param("account") String account);
 
+
+
 }

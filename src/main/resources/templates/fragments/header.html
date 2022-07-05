@@ -36,11 +36,11 @@
                 <button class="btn btn-outline-dark" sec:authorize="isAnonymous()" type="button" onclick="location.href='/login'">
                     로그인
                 </button>
-            <button class="btn btn-outline-dark" sec:authorize="isAuthenticated()" type="button" onclick="/logout">
-                <i class="bi-cart-fill me-1"></i>
+                <button class="btn btn-outline-dark" sec:authorize="isAuthenticated()" type="button" onclick="location.href='/logout'">
+                <!--<i class="bi-cart-fill me-1"></i>-->
                 로그아웃
-                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+                <!--<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
+                </button>
         </div>
     </div>
 </nav></header>
