@@ -2,27 +2,35 @@ package festicket.demo.controller.login;
 
 
 import festicket.demo.domain.member.MemberDto;
+import festicket.demo.repository.MemberRepository;
+import festicket.demo.service.MemberService;
 import festicket.demo.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {
 
-    private final MemberServiceImpl memberService;
+    private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/register")
     public String registerForm(Model model) {
@@ -61,4 +69,30 @@ public class LoginController {
 
     }
 
+    @GetMapping("/passwdResetStart")
+    public String passwdResetStartForm() {
+
+        return "login/passwdResetStart";
+    }
+
+    @PostMapping("/passwdResetStart")
+    public String passwordResetStart(@Param("account") String account, Model model) {
+        boolean findMember = memberRepository.existsByAccount(account);
+
+        if (findMember == false) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("account", account);
+        return "/login/passwdReset";
+    }
+
+
+    @PostMapping("/passwdReset")
+    public String passwdReset(@Param("account") String account, @Param("newPassword") String newPassword) {
+
+        memberService.changePasswordByAccount(account, newPassword);
+
+        return "redirect:/login";
+    }
 }
